@@ -1,17 +1,17 @@
 {
-	"name": "tidy5e-ah",
+	"name": "tidy5e-actions-helper",
 	"title": "Tidy5e Actions Helper",
-	"description": "A module to manage character actions",
+	"description": "A module to help manage character actions",
 	"version": "0.1.0",
 	"author": "sdenec#3813",
 	"minimumCoreVersion": "0.7.6",
 	"compatibleCoreVersion": "0.7.9",
 	"system": "dnd5e",
 	"esmodules": [
-		"./scripts/tidy5e-ah.js"
+		"./scripts/tidy5e-actions-helper.js"
 	],
 	"styles": [
-		"./css/tidy5e-ah.css"
+		"./css/tidy5e-actions-helper.css"
 	],
 	"languages": [
 		{
@@ -20,7 +20,7 @@
 			"path": "lang/en.json"
 		}
 	],
-  "url": "https://github.com/sdenec/tidy5e-ah",
-  "manifest": "https://github.com/sdenec/tidy5e-ah/releases/latest/download/module.json",
-  "download": "https://github.com/sdenec/tidy5e-ah/releases/latest/download/module.zip"
+  "url": "https://github.com/sdenec/tidy5e-actions-helper",
+  "manifest": "https://github.com/sdenec/tidy5e-actions-helper/releases/latest/download/module.json",
+  "download": "https://github.com/sdenec/tidy5e-actions-helper/releases/latest/download/module.zip"
 }
