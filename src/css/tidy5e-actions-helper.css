@@ -1,0 +1,84 @@
+#tidy5e-equipment {
+  position: absolute;
+  top: 0;
+  left: -210px;
+  width: 210px;
+  height: 100%;
+  border-right: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  border-radius: 5px 0 0 5px;
+}
+
+#tidy5e-equipment .equipment-header {
+  border: none;
+  padding: 0 8px;
+  border-radius: 5px 0 0 0;
+  background: #333;
+  height: 30px;
+}
+
+#tidy5e-equipment .equipment-header h4 {
+  margin: 0;
+  color: #f0f0e0;
+  line-height: 30px;
+}
+
+#tidy5e-equipment .equipment-body {
+  flex: 1;
+  background: url(/ui/parchment.jpg) repeat;
+  border-radius: 0 0 0 5px;
+  padding: 10px;
+}
+
+#tidy5e-equipment .item-slot {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid #444;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+#tidy5e-equipment .weapon-sets {
+  display: flex;
+  gap: 4px;
+}
+
+#tidy5e-equipment .weapon-sets .weapon-set {
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  width: 44px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+#tidy5e-equipment .weapon-sets .weapon-set.active {
+  background: limegreen;
+}
+
+#tidy5e-equipment .weapon-sets .weapon-set .main-hand {
+  margin-bottom: 2px;
+}
+
+#tidy5e-equipment .weapon-sets .weapon-set .equipped {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border: 1px solid #444;
+  background: #444;
+  border-radius: 50%;
+}
+
+#tidy5e-equipment .weapon-sets .weapon-set.active .equipped {
+  background: greenyellow;
+}

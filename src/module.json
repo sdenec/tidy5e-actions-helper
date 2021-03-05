@@ -8,7 +8,7 @@
 	"compatibleCoreVersion": "0.7.9",
 	"system": "dnd5e",
 	"esmodules": [
-		"./scripts/tidy5e-actions-helper.js"
+		"./scripts/init.js"
 	],
 	"styles": [
 		"./css/tidy5e-actions-helper.css"
