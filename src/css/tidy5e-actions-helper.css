@@ -1,4 +1,4 @@
-#tidy5e-equipment {
+#t5eah-equipmentTab {
   position: absolute;
   top: 0;
   left: -210px;
@@ -8,11 +8,11 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  z-index: -1;
+  z-index: -20;
   border-radius: 5px 0 0 5px;
 }
 
-#tidy5e-equipment .equipment-header {
+#t5eah-equipmentTab .t5eah-equipment-header {
   border: none;
   padding: 0 8px;
   border-radius: 5px 0 0 0;
@@ -20,65 +20,127 @@
   height: 30px;
 }
 
-#tidy5e-equipment .equipment-header h4 {
+#t5eah-equipmentTab .t5eah-equipment-header h4 {
   margin: 0;
   color: #f0f0e0;
   line-height: 30px;
 }
 
-#tidy5e-equipment .equipment-body {
+#t5eah-equipmentTab .t5eah-equipment-body {
   flex: 1;
   background: url(/ui/parchment.jpg) repeat;
   border-radius: 0 0 0 5px;
   padding: 10px;
 }
 
-#tidy5e-equipment .item-slot {
+#t5eah-equipmentTab .t5eah-equipment-body h1 {
+  font-size: 16px;
+  text-align: center;
+  padding: 0;
+  margin: 0 0 8px 0;
+}
+
+#t5eah-equipmentTab .t5eah-equipment-body h2 {
+  font-size: 16px;
+  line-height: 16px;
+  padding: 8px 0 4px 0;
+  text-align: center;
+  margin: 0 0 4px 0;
+  cursor: pointer;
+}
+
+#t5eah-equipmentTab .t5eah-equipment-body h3 {
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+
+#t5eah-equipmentTab .setContainer {
+  background: rgba(0, 0, 0, 0.15);
+  color: #fff;
+  border-radius: 5px;
+}
+
+#t5eah-equipmentTab .setContainer.equipped {
+  background: #33ac32;
+}
+
+#t5eah-equipmentTab .itemSlot {
   width: 40px;
   height: 40px;
-  border-radius: 3px;
-  border: 1px solid #444;
-  background: rgba(0, 0, 0, 0.15);
-}
-
-#tidy5e-equipment .weapon-sets {
-  display: flex;
-  gap: 4px;
-}
-
-#tidy5e-equipment .weapon-sets .weapon-set {
-  list-style: none;
-  margin: 0;
-  padding: 2px;
-  width: 44px;
+  border-radius: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   position: relative;
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+  cursor: pointer;
 }
 
-#tidy5e-equipment .weapon-sets .weapon-set.active {
-  background: limegreen;
-}
-
-#tidy5e-equipment .weapon-sets .weapon-set .main-hand {
-  margin-bottom: 2px;
-}
-
-#tidy5e-equipment .weapon-sets .weapon-set .equipped {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#t5eah-equipmentTab .itemSlot .label {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
-  border: 1px solid #444;
-  background: #444;
-  border-radius: 50%;
+  z-index: 10;
+  display: none;
+  background: #222;
+  border-radius: 5px;
+  padding: 4px 8px;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  line-height: 12px;
+  white-space: nowrap;
 }
 
-#tidy5e-equipment .weapon-sets .weapon-set.active .equipped {
-  background: greenyellow;
+#t5eah-equipmentTab .itemSlot .label p {
+  padding: 0;
+  margin: 0;
+}
+
+#t5eah-equipmentTab .itemSlot:hover .label {
+  display: inline-block;
+}
+
+#t5eah-equipmentTab #bodySets .wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+#t5eah-equipmentTab #bodySets .setContainer {
+  padding: 0 5px 5px 5px;
+  width: 92px;
+}
+
+#t5eah-equipmentTab #bodySets .bodySet {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+#t5eah-equipmentTab #handSets {
+  margin-top: 16px;
+}
+
+#t5eah-equipmentTab #handSets .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+#t5eah-equipmentTab #handSets .setContainer {
+  width: 44px;
+  padding: 2px;
+}
+
+#t5eah-equipmentTab #handSets .handSet {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
