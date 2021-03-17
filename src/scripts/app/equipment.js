@@ -3,7 +3,9 @@ export default class Equipment {
 
     this.data = mergeObject(this.defaultData(), flags || {}, { inplace: false });
     // define variables for all item slots
-    this.headwearA = this.data.body?.primary?.headwear;
+
+    this.bodyA = this.data.body?.primary?.equipped
+    this.headwearA = this.data.body?.primary?.headwear
     this.necklaceA = this.data.body?.primary?.necklace
     this.backA = this.data.body?.primary?.back
     this.armorA = this.data.body?.primary?.armor
@@ -14,6 +16,7 @@ export default class Equipment {
     this.beltA = this.data.body?.primary?.belt
     this.bootsA = this.data.body?.primary?.boots
 
+    this.bodyB = this.data.body?.secondary?.equipped
     this.headwearB = this.data.body?.secondary?.headwear
     this.necklaceB = this.data.body?.secondary?.necklace
     this.backB = this.data.body?.secondary?.back
@@ -25,15 +28,19 @@ export default class Equipment {
     this.beltB = this.data.body?.secondary?.belt
     this.bootsB = this.data.body?.secondary?.boots
 
+    this.handsA = this.data.hands?.handSetA?.equipped
     this.primaryHandA = this.data.hands?.handSetA?.primaryHand
     this.secondaryHandA = this.data.hands?.handSetA?.secondaryHand
 
+    this.handsB = this.data.hands?.handSetA?.equipped
     this.primaryHandB = this.data.hands?.handSetB?.primaryHand
     this.secondaryHandB = this.data.hands?.handSetB?.secondaryHand
 
+    this.handsC = this.data.hands?.handSetA?.equipped
     this.primaryHandC = this.data.hands?.handSetC?.primaryHand
     this.secondaryHandC = this.data.hands?.handSetC?.secondaryHand
 
+    this.handsD = this.data.hands?.handSetA?.equipped
     this.primaryHandC = this.data.hands?.handSetD?.primaryHand
     this.secondaryHandC = this.data.hands?.handSetD?.secondaryHand
   }
@@ -42,6 +49,7 @@ export default class Equipment {
     return {
       body : {
         primary : {
+          equipped : true,
           headwear : null,
           necklace : null,
           back : null,
@@ -54,6 +62,7 @@ export default class Equipment {
           boots : null
         },
         secondary : {
+          equipped : false,
           headwear : null,
           necklace : null,
           back : null,
@@ -68,18 +77,22 @@ export default class Equipment {
       },
       hands : {
         handSetA : {
+          equipped : true,
           primaryHand : null,
           secondaryHand : null
         },
         handSetB : {
+          equipped : false,
           primaryHand : null,
           secondaryHand : null
         },
         handSetC : {
+          equipped : false,
           primaryHand : null,
           secondaryHand : null
         },
         handSetD : {
+          equipped : false,
           primaryHand : null,
           secondaryHand : null
         }
@@ -91,6 +104,7 @@ export default class Equipment {
     return {
       body : {
         primary : {
+          equipped : this.bodyA,
           headwear : this.headwearA,
           necklace : this.necklaceA,
           back : this.backA,
@@ -103,6 +117,7 @@ export default class Equipment {
           boots : this.bootsA
         },
         secondary : {
+          equipped : this.bodyB,
           headwear : this.headwearB,
           necklace : this.necklaceB,
           back : this.backB,
@@ -117,18 +132,22 @@ export default class Equipment {
       },
       hands : {
         handSetA : {
+          equipped : this.handsA,
           primaryHand : this.primaryHandA,
           secondaryHand : this.secondaryHandA
         },
         handSetB : {
+          equipped : this.handsB,
           primaryHand : this.primaryHandB,
           secondaryHand : this.secondaryHandB
         },
         handSetC : {
+          equipped : this.handsC,
           primaryHand : this.primaryHandC,
           secondaryHand : this.secondaryHandC
         },
         handSetD : {
+          equipped : this.handsD,
           primaryHand : this.primaryHandD,
           secondaryHand : this.secondaryHandD
         }
