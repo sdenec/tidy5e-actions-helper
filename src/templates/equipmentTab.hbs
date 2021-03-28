@@ -8,11 +8,29 @@
         <h1>Equipment on Body</h1>
       </header>
       <div class="wrapper">
+        {{#each body}}
+          <div id="{{bodyId}}" class="setContainer {{equipState}}">
+            <h2>{{setCount}}</h2>
+            <ul class="bodySet">
+              {{#each bodySet}}
+                <li class="itemSlot {{slotType}} {{slotState}}">
+                  <div class="item" draggable="true" data-item-slot="{{slotData}}" data-item-id="{{itemId}}" style="background-image: url({{itemImage}});">
+                    <!-- background-image of equipped item -->
+                  </div>
+                  <span class="label">
+                    <h3>{{slotTitle}}</h3>
+                    <p>{{itemInfo}}</p>
+                  </span>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        {{/each}}
         <div id="bodyPrimary" class="setContainer equipped">
           <h2>I</h2>
           <ul class="bodySet">
-            <li class="itemSlot headwear">
-              <div class="item" data-item-slot="body.primary.headwear" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot headwear empty">
+              <div class="item" data-item-slot="body.primary.headwear" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -20,8 +38,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot necklace">
-              <div class="item" data-item-slot="body.primary.necklace" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot necklace empty">
+              <div class="item" data-item-slot="body.primary.necklace" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -29,17 +47,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot back">
-              <div class="item" data-item-slot="body.primary.back" data-item-id="" style="background-image='url()';">
-                <!-- background-image of equipped item -->
-              </div>
-              <span class="label">
-                <h3>Back</h3>
-                <p>Drop item to equip</p>
-              </span>
-            </li>
-            <li class="itemSlot armor">
-              <div class="item" data-item-slot="body.primary.armor" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot armor empty">
+              <div class="item" data-item-slot="body.primary.armor" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -47,8 +56,17 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot bracers">
-              <div class="item" data-item-slot="body.primary.bracers" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot back empty">
+              <div class="item" data-item-slot="body.primary.back" data-item-id="" style="background-image: url();">
+                <!-- background-image of equipped item -->
+              </div>
+              <span class="label">
+                <h3>Cloak</h3>
+                <p>Drop item to equip</p>
+              </span>
+            </li>
+            <li class="itemSlot bracers empty">
+              <div class="item" data-item-slot="body.primary.bracers" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -56,8 +74,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot gloves">
-              <div class="item" data-item-slot="body.primary.gloves" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot gloves empty">
+              <div class="item" data-item-slot="body.primary.gloves" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -65,26 +83,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot ringLeft">
-              <div class="item" data-item-slot="body.primary.ringLeft" data-item-id="" style="background-image='url()';">
-                <!-- background-image of equipped item -->
-              </div>
-              <span class="label">
-                <h3>Ring</h3>
-                <p>Drop item to equip</p>
-              </span>
-            </li>
-            <li class="itemSlot ringRight">
-              <div class="item" data-item-slot="body.primary.ringRight" data-item-id="" style="background-image='url()';">
-                <!-- background-image of equipped item -->
-              </div>
-              <span class="label">
-                <h3>Ring</h3>
-                <p>Drop item to equip</p>
-              </span>
-            </li>
-            <li class="itemSlot belt">
-              <div class="item" data-item-slot="body.primary.belt" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot belt empty">
+              <div class="item" data-item-slot="body.primary.belt" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -92,12 +92,30 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot boots">
-              <div class="item" data-item-slot="body.primary.boots" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot ringLeft empty">
+              <div class="item" data-item-slot="body.primary.ringLeft" data-item-id="" style="background-image: url();">
+                <!-- background-image of equipped item -->
+              </div>
+              <span class="label">
+                <h3>Ring</h3>
+                <p>Drop item to equip</p>
+              </span>
+            </li>
+            <li class="itemSlot boots empty">
+              <div class="item" data-item-slot="body.primary.boots" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
                 <h3>Boots</h3>
+                <p>Drop item to equip</p>
+              </span>
+            </li>
+            <li class="itemSlot ringRight empty">
+              <div class="item" data-item-slot="body.primary.ringRight" data-item-id="" style="background-image: url();">
+                <!-- background-image of equipped item -->
+              </div>
+              <span class="label">
+                <h3>Ring</h3>
                 <p>Drop item to equip</p>
               </span>
             </li>
@@ -106,8 +124,8 @@
         <div id="bodySecondary" class="setContainer">
           <h2>II</h2>
           <ul class="bodySet">
-            <li class="itemSlot headwear">
-              <div class="item" data-item-slot="body.secondary.headwear" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot headwear empty">
+              <div class="item" data-item-slot="body.secondary.headwear" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -115,8 +133,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot necklace">
-              <div class="item" data-item-slot="body.secondary.necklace" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot necklace empty">
+              <div class="item" data-item-slot="body.secondary.necklace" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -124,17 +142,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot back">
-              <div class="item" data-item-slot="body.secondary.back" data-item-id="" style="background-image='url()';">
-                <!-- background-image of equipped item -->
-              </div>
-              <span class="label">
-                <h3>Back</h3>
-                <p>Drop item to equip</p>
-              </span>
-            </li>
-            <li class="itemSlot armor">
-              <div class="item" data-item-slot="body.secondary.armor" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot armor empty">
+              <div class="item" data-item-slot="body.secondary.armor" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -142,8 +151,17 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot bracers">
-              <div class="item" data-item-slot="body.secondary.bracers" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot back empty">
+              <div class="item" data-item-slot="body.secondary.back" data-item-id="" style="background-image: url();">
+                <!-- background-image of equipped item -->
+              </div>
+              <span class="label">
+                <h3>Cloak</h3>
+                <p>Drop item to equip</p>
+              </span>
+            </li>
+            <li class="itemSlot bracers empty">
+              <div class="item" data-item-slot="body.secondary.bracers" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -151,8 +169,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot gloves">
-              <div class="item" data-item-slot="body.secondary.gloves" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot gloves empty">
+              <div class="item" data-item-slot="body.secondary.gloves" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -160,26 +178,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot ringLeft">
-              <div class="item" data-item-slot="body.secondary.ringLeft" data-item-id="" style="background-image='url()';">
-                <!-- background-image of equipped item -->
-              </div>
-              <span class="label">
-                <h3>Ring</h3>
-                <p>Drop item to equip</p>
-              </span>
-            </li>
-            <li class="itemSlot ringRight">
-              <div class="item" data-item-slot="body.secondary.ringRight" data-item-id="" style="background-image='url()';">
-                <!-- background-image of equipped item -->
-              </div>
-              <span class="label">
-                <h3>Ring</h3>
-                <p>Drop item to equip</p>
-              </span>
-            </li>
-            <li class="itemSlot belt">
-              <div class="item" data-item-slot="body.secondary.belt" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot belt empty">
+              <div class="item" data-item-slot="body.secondary.belt" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -187,12 +187,30 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot boots">
-              <div class="item" data-item-slot="body.secondary.boots" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot ringLeft empty">
+              <div class="item" data-item-slot="body.secondary.ringLeft" data-item-id="" style="background-image: url();">
+                <!-- background-image of equipped item -->
+              </div>
+              <span class="label">
+                <h3>Ring</h3>
+                <p>Drop item to equip</p>
+              </span>
+            </li>
+            <li class="itemSlot boots empty">
+              <div class="item" data-item-slot="body.secondary.boots" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
                 <h3>Boots</h3>
+                <p>Drop item to equip</p>
+              </span>
+            </li>
+            <li class="itemSlot ringRight empty">
+              <div class="item" data-item-slot="body.secondary.ringRight" data-item-id="" style="background-image: url();">
+                <!-- background-image of equipped item -->
+              </div>
+              <span class="label">
+                <h3>Ring</h3>
                 <p>Drop item to equip</p>
               </span>
             </li>
@@ -206,11 +224,32 @@
         <h1>Equipment in Hands</h1>
       </header>
       <div class="wrapper">
+
+        {{#each hands}}
+        <div id="{{handId}}" class="setContainer {{equipState}}">
+          <h2>{{setCount}}</h2>
+          <ul class="handSet">
+            {{#each handSet}}
+            <li class="itemSlot {{slotType}} {{slotState}}">
+              <div class="item" draggable="true" data-item-slot="{{slotData}}" data-item-id="{{itemId}}"
+                style="background-image: url({{itemImage}});">
+                <!-- background-image of equipped item -->
+              </div>
+              <span class="label">
+                <h3>{{slotTitle}}</h3>
+                <p>{{itemInfo}}</p>
+              </span>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+        {{/each}}
+
         <div id="handSetA" class="setContainer equipped">
           <h2>I</h2>
           <ul class="handSet">
-            <li class="itemSlot primary" data-slot="hands.handSetA.primary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot primary" data-slot="hands.handSetA.primary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -218,8 +257,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot secondary" data-slot="hands.handSetA.secondary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot secondary" data-slot="hands.handSetA.secondary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -232,8 +271,8 @@
         <div id="handSetB" class="setContainer">
           <h2>II</h2>
           <ul class="handSet">
-            <li class="itemSlot primary" data-slot="hands.handSetB.primary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot primary" data-slot="hands.handSetB.primary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -241,8 +280,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot secondary" data-slot="hands.handSetB.secondary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot secondary" data-slot="hands.handSetB.secondary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -255,8 +294,8 @@
         <div id="handSetC" class="setContainer">
           <h2>III</h2>
           <ul class="handSet">
-            <li class="itemSlot primary" data-slot="hands.handSetC.primary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot primary" data-slot="hands.handSetC.primary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -264,8 +303,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot secondary" data-slot="hands.handSetC.secondary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot secondary" data-slot="hands.handSetC.secondary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -278,8 +317,8 @@
         <div id="handSetD" class="setContainer">
           <h2>IV</h2>
           <ul class="handSet">
-            <li class="itemSlot primary" data-slot="hands.handSetD.primary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot primary" data-slot="hands.handSetD.primary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">
@@ -287,8 +326,8 @@
                 <p>Drop item to equip</p>
               </span>
             </li>
-            <li class="itemSlot secondary" data-slot="hands.handSetD.secondary">
-              <div class="item" data-item-id="" style="background-image='url()';">
+            <li class="itemSlot secondary" data-slot="hands.handSetD.secondary empty">
+              <div class="item" data-item-id="" style="background-image: url();">
                 <!-- background-image of equipped item -->
               </div>
               <span class="label">

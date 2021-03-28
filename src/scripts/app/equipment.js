@@ -2,6 +2,7 @@ export default class Equipment {
   constructor(flags){
 
     this.data = mergeObject(this.defaultData(), flags || {}, { inplace: false });
+    console.log(this.data)
     // define variables for all item slots
 
     this.bodyA = this.data.body?.primary?.equipped
@@ -164,10 +165,18 @@ export default class Equipment {
   }
 
   get equipmentBody () {
-    console.log('test')
+    console.log(this.data.body);
+    let body = {
+      "equipment"  : [
+      { "a" : "a"},
+      { "b" : "b"}
+      ]
+    }
+
+    return body;
   }
 
-  get equipmentgloves () {
+  get equipmentHands () {
     console.log('test')
   }
 }

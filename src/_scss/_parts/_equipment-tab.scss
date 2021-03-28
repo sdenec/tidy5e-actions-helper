@@ -82,60 +82,60 @@
 
     &::after {
       content: '';
-      width: 100%;
-      height: 100%;
+      width: 70%;
+      height: 70%;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: 50%;
       background: transparent center no-repeat;
-      background-size: 85%;
-      opacity: .15;
+      opacity: .1;
+      transform: translate(-50%, -50%);
     }
   }
 
   .headwear::after {
-    background-image: url(../img/headwear.png);
+    background-image: url(../img/headwear.svg);
   }
 
   .necklace::after {
-    background-image: url(../img/amulet.png);
+    background-image: url(../img/amulet.svg);
   }
 
   .back::after {
-    background-image: url(../img/back.png);
+    background-image: url(../img/cloak.svg);
   }
 
   .armor::after {
-    background-image: url(../img/armor.png);
+    background-image: url(../img/armor.svg);
   }
 
   .bracers::after {
-    background-image: url(../img/bracers.png);
+    background-image: url(../img/bracers.svg);
   }
 
   .gloves::after {
-    background-image: url(../img/gloves.png);
+    background-image: url(../img/gloves.svg);
   }
 
   .ringLeft::after,
   .ringRight::after {
-    background-image: url(../img/ring.png);
+    background-image: url(../img/ring.svg);
   }
 
   .belt::after {
-    background-image: url(../img/belt.png);
+    background-image: url(../img/belt.svg);
   }
 
   .boots::after {
-    background-image: url(../img/boots.png);
+    background-image: url(../img/boots.svg);
   }
 
   .primary::after {
-    background-image: url(../img/handA.png);
+    background-image: url(../img/handA.svg);
   }
 
   .secondary::after {
-    background-image: url(../img/handB.png);
+    background-image: url(../img/handB.svg);
   }
 
   #bodySets {
