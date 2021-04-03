@@ -6,5 +6,6 @@ Hooks.on('init', () => {
 });
 
 Hooks.on(`renderActorSheet`, (app, html, data) => {
+  console.log("render Tab!")
   equipmentTab(app, html, data);
 });

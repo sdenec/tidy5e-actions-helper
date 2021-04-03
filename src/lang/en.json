@@ -1,5 +1,21 @@
 {
-  "TIDY5E.AH" : {
-    "Module" : "Tidy5e Actions Helper"
+  "T5EAH" : {
+    "Module" : "Tidy5e Actions Helper",
+
+    "Equipment" : {
+      "WindowTitle" : "Equipment Configuration",
+      "Headwear" : "Headwear",
+      "Necklace" : "Necklace",
+      "Back" : "Back",
+      "Armor" : "Armor",
+      "Bracers" : "Bracers",
+      "Gloves" : "Gloves",
+      "Belt" : "Belt",
+      "Boots" : "Boots",
+      "RingRight" : "Ring",
+      "RingLeft" : "Ring",
+      "MainHand" : "Main Hand",
+      "OffHand" : "Off Hand"
+    }
   }
 }

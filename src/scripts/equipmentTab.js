@@ -1,31 +1,32 @@
 import Equipment from './app/equipment.js'
 
 export async function equipmentTab(app, html, data) {
+  if(!html[0].classList.contains("sheet")){
+    html = html.closest(".sheet");
+  }
   
   let actor = game.actors.entities.find(a => a.data._id === data.actor._id);
-  let actorId = actor.data._id;
-  console.log(actor);
-  let equipmentSlots = new Equipment(actor.data.flags['tidy5e-actions-helper']);
-  // log actor
+  let equipmentSlots = new Equipment(actor, html);
   
   let sheet = html.find('.sheet-body').closest('.window-content');
-  // log sheet
-  console.log(sheet);
   
-  let equipmentTabHtml = $(await renderTemplate('modules/tidy5e-actions-helper/templates/equipmentTab.hbs'), equipmentSlots);
-  console.log(equipmentTabHtml);
+  let equipmentTabHtml = $(await renderTemplate('modules/tidy5e-actions-helper/templates/equipmentTab.hbs', equipmentSlots));
   sheet.append(equipmentTabHtml);
 
-  let equipmentTab = html.find('#t5eah-equipmentTab');
+  let equipmentTab = $('#t5eah-equipmentTab');
 
-  let equipSet = html.find('#t5eah-equipmentTab .setContainer h2');
+  // Event Listener
+
+  let equipSet = equipmentTab.find('.setContainer h2');
   equipSet.on('click', function(){
-    $(this).closest('.wrapper').find('.setContainer.equipped').removeClass('equipped');
-    $(this).closest('.setContainer').addClass('equipped');
+    let equipped = $(this).closest('.setContainer').hasClass('equipped');
+    if(!equipped) $(this).closest('.wrapper').find('.setContainer.equipped').removeClass('equipped');
+    $(this).closest('.setContainer').toggleClass('equipped');
+    equipmentSlots.updateSets();
   })
   
   let dragItem = sheet.find('.inventory .item');
-  let dropItem = sheet.find('#t5eah-equipmentTab .itemSlot');
+  let dropItem = equipmentTab.find('.itemSlot');
 
   dragItem.each((i, item) => { 
     item.addEventListener('dragstart', 
@@ -37,21 +38,22 @@ export async function equipmentTab(app, html, data) {
 
   dropItem.each((i, slot) => { 
     slot.addEventListener('drop', 
-    function(e){ 
-      // let itemId = $(this).find('.item').data('item-id');
+    function(evt){
       let itemSlot = $(this).find('.item').data('item-slot');
-      // console.log(`Actions Helper Drop ${itemId} in ${itemSlot}`);
-      onDrop(e, itemSlot);
+      let itemId = onDrop(evt);
+      $(this).find('.item').attr('data-id', itemId);
+      console.log(`Actions Helper Drop ${itemId} in ${itemSlot}`);
+      equipmentSlots.updateSets();
     });
   });
 
   
-    async function onDrop(evt, itemSlot) {
+    function onDrop(evt) {
         evt.preventDefault();
 
-        console.log(evt);
+        // console.log(evt);
 
-        console.log(itemSlot);
+        // console.log(itemSlot);
 
         let data;
         try {
@@ -69,8 +71,9 @@ export async function equipmentTab(app, html, data) {
         // this['tidy5e-actions-helper'].magicItem.equipped = evt.target.checked;
 
         console.log(data)
-        console.log(data.data.type)
-        console.log(data.data._id)
+        return data.data._id;
+        // console.log(data.data.type)
+        // console.log(data.data._id)
 
         // let pack = data.pack;
         // let entity;
@@ -87,6 +90,8 @@ export async function equipmentTab(app, html, data) {
         //     this.render();
         // }
     }
+
+    // slot labels
 
     let labelTimer;
     let labelDelay = 500;

@@ -1,182 +1,111 @@
 export default class Equipment {
-  constructor(flags){
-
-    this.data = mergeObject(this.defaultData(), flags || {}, { inplace: false });
-    console.log(this.data)
-    // define variables for all item slots
-
-    this.bodyA = this.data.body?.primary?.equipped
-    this.headwearA = this.data.body?.primary?.headwear
-    this.necklaceA = this.data.body?.primary?.necklace
-    this.backA = this.data.body?.primary?.back
-    this.armorA = this.data.body?.primary?.armor
-    this.ringLeftA = this.data.body?.primary?.ringLeft
-    this.ringRightA = this.data.body?.primary?.ringRight
-    this.bracersA = this.data.body?.primary?.bracers
-    this.glovesA = this.data.body?.primary?.gloves
-    this.beltA = this.data.body?.primary?.belt
-    this.bootsA = this.data.body?.primary?.boots
-
-    this.bodyB = this.data.body?.secondary?.equipped
-    this.headwearB = this.data.body?.secondary?.headwear
-    this.necklaceB = this.data.body?.secondary?.necklace
-    this.backB = this.data.body?.secondary?.back
-    this.armorB = this.data.body?.secondary?.armor
-    this.ringLeftB = this.data.body?.secondary?.ringLeft
-    this.ringRightB = this.data.body?.secondary?.ringRight
-    this.bracersB = this.data.body?.secondary?.bracers
-    this.glovesB = this.data.body?.secondary?.gloves
-    this.beltB = this.data.body?.secondary?.belt
-    this.bootsB = this.data.body?.secondary?.boots
-
-    this.handsA = this.data.hands?.handSetA?.equipped
-    this.primaryHandA = this.data.hands?.handSetA?.primaryHand
-    this.secondaryHandA = this.data.hands?.handSetA?.secondaryHand
-
-    this.handsB = this.data.hands?.handSetA?.equipped
-    this.primaryHandB = this.data.hands?.handSetB?.primaryHand
-    this.secondaryHandB = this.data.hands?.handSetB?.secondaryHand
-
-    this.handsC = this.data.hands?.handSetA?.equipped
-    this.primaryHandC = this.data.hands?.handSetC?.primaryHand
-    this.secondaryHandC = this.data.hands?.handSetC?.secondaryHand
-
-    this.handsD = this.data.hands?.handSetA?.equipped
-    this.primaryHandC = this.data.hands?.handSetD?.primaryHand
-    this.secondaryHandC = this.data.hands?.handSetD?.secondaryHand
+  constructor(sourceActor, html){
+    this.sourceActor = sourceActor;
+    console.log(this.sourceActor)
+    this.html = html;
+    this.setData = this.sourceActor.getFlag("tidy5e-actions-helper", "data");
+    // this.setData = this.sourceActor.getFlag("tidy5e-actions-helper", "empty");
+    console.log(this.setData);
+    this.bodySlotTypes = ["headwear","necklace","back","armor","bracers","gloves","belt","boots","ringLeft","ringRight"];
+    this.handSlotTypes = ["mainHand","offHand"];
+    this.equipment = this.getData();
+    return this;
   }
 
-  async defaultData() {
+  getData(){
     return {
-      body : {
-        primary : {
-          equipped : true,
-          headwear : null,
-          necklace : null,
-          back : null,
-          armor : null,
-          ringLeft : null,
-          ringRight : null,
-          bracers : null,
-          gloves : null,
-          belt : null,
-          boots : null
-        },
-        secondary : {
-          equipped : false,
-          headwear : null,
-          necklace : null,
-          back : null,
-          armor : null,
-          ringLeft : null,
-          ringRight : null,
-          bracers : null,
-          gloves : null,
-          belt : null,
-          boots : null
-        }
-      },
-      hands : {
-        handSetA : {
-          equipped : true,
-          primaryHand : null,
-          secondaryHand : null
-        },
-        handSetB : {
-          equipped : false,
-          primaryHand : null,
-          secondaryHand : null
-        },
-        handSetC : {
-          equipped : false,
-          primaryHand : null,
-          secondaryHand : null
-        },
-        handSetD : {
-          equipped : false,
-          primaryHand : null,
-          secondaryHand : null
-        }
-      }
+      "windowTitle" : game.i18n.localize("T5EAH.Equipment.WindowTitle"),
+      "bodySet" : this.getSets("bodySet",2),
+      "handSet" : this.getSets("handSet",4)
     }
   }
 
-  serializeData() {
-    return {
-      body : {
-        primary : {
-          equipped : this.bodyA,
-          headwear : this.headwearA,
-          necklace : this.necklaceA,
-          back : this.backA,
-          armor : this.armorA,
-          ringLeft : this.ringLeftA,
-          ringRight : this.ringRightA,
-          bracers : this.bracersA,
-          gloves : this.glovesA,
-          belt : this.beltA,
-          boots : this.bootsA
-        },
-        secondary : {
-          equipped : this.bodyB,
-          headwear : this.headwearB,
-          necklace : this.necklaceB,
-          back : this.backB,
-          armor : this.armorB,
-          ringLeft : this.ringLeftB,
-          ringRight : this.ringRightB,
-          bracers : this.bracersB,
-          gloves : this.glovesB,
-          belt : this.beltB,
-          boots : this.bootsB
-        }
-      },
-      hands : {
-        handSetA : {
-          equipped : this.handsA,
-          primaryHand : this.primaryHandA,
-          secondaryHand : this.secondaryHandA
-        },
-        handSetB : {
-          equipped : this.handsB,
-          primaryHand : this.primaryHandB,
-          secondaryHand : this.secondaryHandB
-        },
-        handSetC : {
-          equipped : this.handsC,
-          primaryHand : this.primaryHandC,
-          secondaryHand : this.secondaryHandC
-        },
-        handSetD : {
-          equipped : this.handsD,
-          primaryHand : this.primaryHandD,
-          secondaryHand : this.secondaryHandD
-        }
-      }
+  getSets(setName=null,setCount=null){
+    let sets = [];
+    for(let i = 0; i<setCount; i++){
+      let obj = {};
+      obj.set = this.getSlots(setName,i);
+      obj.equipState = this.setInUse(setName,i);
+      sets.push(obj);
     }
+    return sets;
   }
 
-  update(actor) {
-    actor.update({
-      flags: {
-       'tidy5e-actions-helper' : this.serializeData()
-      }
-    })
-  }
-
-  get equipmentBody () {
-    console.log(this.data.body);
-    let body = {
-      "equipment"  : [
-      { "a" : "a"},
-      { "b" : "b"}
-      ]
+  getSlots(setType=null,set=null){
+    let slotTypesArray = [];
+    const slots = [];
+    
+    switch (setType){
+      case "bodySet":
+        slotTypesArray = this.bodySlotTypes;
+      break;
+      case "handSet":
+        slotTypesArray = this.handSlotTypes;
+      break;
     }
 
-    return body;
+    slotTypesArray.forEach(element => {
+      let obj = {};
+      obj.slotType = element;
+      let translationString = `T5EAH.Equipment.${element.charAt(0).toUpperCase() + element.slice(1)}`;
+      obj.slotName = game.i18n.localize(translationString);
+      obj.itemId = this.getItemId(setType, set, element);
+      obj.slotState = this.slotInUse(setType, set, element);
+      obj.itemImage = this.getItemImage(setType, set, obj.itemId);
+      slots.push(obj);
+    });
+
+    return slots;
   }
 
-  get equipmentHands () {
-    console.log('test')
+  getItemId(setType=null, set=null, slot=null){
+    let id = this.setData?.[setType]?.[set]?.[slot];
+    if(id) return id;
+    return undefined;
+  }
+
+  getItemImage(setType=null, set=null, itemId=null){
+    let image = "path/to/image";
+    return image;
+  }
+
+  slotInUse(setType=null, set=null, element=null){
+    let id = this.setData?.[setType]?.[set]?.[element];
+    if(!id) return undefined;
+    return "equipped";
+  }
+
+  setInUse(setType=null, set=null){
+    let equipped = this.setData?.[setType]?.[set]?.["equipped"];
+    if(!equipped) return undefined;
+    return "equipped";
+  }
+
+  async updateSets(){
+    let data = {
+      "bodySet" : [],
+      "handSet" : []
+    };
+    
+    this.html.find(".setContainer").each( (i, el) => {
+      let setType = el.dataset.type;
+      let obj = {};
+      obj.equipped = el.classList.contains("equipped");
+      // console.log(el);
+      $(el).find('.item').each( (i, el) => {
+        console.log(el)
+        let itemSlot = el.dataset.slot;
+        let itemId = el.dataset.id;
+        if(itemId) {
+          obj[`${itemSlot}`] = itemId;
+        } else {
+          obj[`${itemSlot}`] = null;
+        }
+      });
+      data[setType].push(obj);
+    });
+
+    console.log("updating sets!")
+    await this.sourceActor.setFlag("tidy5e-actions-helper", "data", data);
   }
 }
