@@ -51,7 +51,8 @@ export default class Equipment {
       obj.slotName = game.i18n.localize(translationString);
       obj.itemId = this.getItemId(setType, set, element);
       obj.slotState = this.slotInUse(setType, set, element);
-      obj.itemImage = this.getItemImage(setType, set, obj.itemId);
+      obj.itemImage = this.getItemImage(obj.itemId);
+      obj.itemName = this.getItemName(obj.itemId);
       slots.push(obj);
     });
 
@@ -64,9 +65,16 @@ export default class Equipment {
     return undefined;
   }
 
-  getItemImage(setType=null, set=null, itemId=null){
-    let image = "path/to/image";
-    return image;
+  getItemImage(itemId=null){
+    if(!itemId) return;
+    let item = this.sourceActor.getOwnedItem(itemId);
+    return item.data.img;
+  }
+
+  getItemName(itemId=null){
+    if(!itemId) return;
+    let item = this.sourceActor.getOwnedItem(itemId);
+    return item.data.name;
   }
 
   slotInUse(setType=null, set=null, element=null){
