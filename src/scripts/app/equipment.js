@@ -1,11 +1,8 @@
 export default class Equipment {
   constructor(sourceActor, html){
     this.sourceActor = sourceActor;
-    console.log(this.sourceActor)
     this.html = html;
     this.setData = this.sourceActor.getFlag("tidy5e-actions-helper", "data");
-    // this.setData = this.sourceActor.getFlag("tidy5e-actions-helper", "empty");
-    console.log(this.setData);
     this.bodySlotTypes = ["headwear","necklace","back","armor","bracers","gloves","belt","boots","ringLeft","ringRight"];
     this.handSlotTypes = ["mainHand","offHand"];
     this.equipment = this.getData();
@@ -45,9 +42,9 @@ export default class Equipment {
     }
 
     slotTypesArray.forEach(element => {
+      let translationString = `T5EAH.Equipment.${element.charAt(0).toUpperCase() + element.slice(1)}`;
       let obj = {};
       obj.slotType = element;
-      let translationString = `T5EAH.Equipment.${element.charAt(0).toUpperCase() + element.slice(1)}`;
       obj.slotName = game.i18n.localize(translationString);
       obj.itemId = this.getItemId(setType, set, element);
       obj.slotState = this.slotInUse(setType, set, element);
@@ -68,13 +65,13 @@ export default class Equipment {
   getItemImage(itemId=null){
     if(!itemId) return;
     let item = this.sourceActor.getOwnedItem(itemId);
-    return item.data.img;
+    return item?.data?.img;
   }
 
   getItemName(itemId=null){
     if(!itemId) return;
     let item = this.sourceActor.getOwnedItem(itemId);
-    return item.data.name;
+    return item?.data?.name;
   }
 
   slotInUse(setType=null, set=null, element=null){
@@ -96,24 +93,48 @@ export default class Equipment {
     };
     
     this.html.find(".setContainer").each( (i, el) => {
-      let setType = el.dataset.type;
       let obj = {};
       obj.equipped = el.classList.contains("equipped");
-      // console.log(el);
       $(el).find('.item').each( (i, el) => {
-        console.log(el)
-        let itemSlot = el.dataset.slot;
         let itemId = el.dataset.id;
-        if(itemId) {
-          obj[`${itemSlot}`] = itemId;
-        } else {
-          obj[`${itemSlot}`] = null;
-        }
+        obj[`${el.dataset.slot}`] = itemId ? itemId : null;
       });
-      data[setType].push(obj);
+      data[el.dataset.type].push(obj);
     });
 
-    console.log("updating sets!")
+    // await this.updateEquipmentState();
     await this.sourceActor.setFlag("tidy5e-actions-helper", "data", data);
+  }
+  
+  async updateEquipmentState(){
+    // get Array of all unequipped items
+    // get array of all equipped items
+    // eliminate item from unequipped if item is equipped
+    
+    let actor = this.sourceActor;
+    const updates = equipment.map(i => {
+      return {_id: i._id, }
+    })
+    // actor.updateEmbeddedEntity()
+  }
+
+  checkItemsExist() {
+    // check if Item is still owned by actor
+    // else remove
+    let itemsChanged = false;
+    this.html.find(".setContainer").each( (i, el) => {
+      $(el).find('.item').each( (i, el) => {
+        let item = this.sourceActor.getOwnedItem(el.dataset.id);
+        if(el.dataset.id && !item) {
+          $(el).attr('data-id', null);
+          itemsChanged = true;
+        }
+      });
+    });
+    if (itemsChanged) this.updateSets();
+  }
+
+  checkValidItem(slotRequirement) {
+
   }
 }

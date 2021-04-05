@@ -80,7 +80,7 @@
 
 #t5eah-equipmentTab .itemSlot .item {
   display: none;
-  cursor: pointer;
+  cursor: grab;
   width: 100%;
   height: 100%;
   border: 2px solid greenyellow;
@@ -89,12 +89,37 @@
   background-size: cover;
 }
 
+#t5eah-equipmentTab .itemSlot .item:active {
+  cursor: grabbing;
+}
+
 #t5eah-equipmentTab .itemSlot.equipped .item {
   display: block;
 }
 
 #t5eah-equipmentTab .itemSlot .label {
   display: none;
+}
+
+#t5eah-equipmentTab .itemSlot .remove {
+  display: none;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-size: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+  cursor: pointer;
+}
+
+#t5eah-equipmentTab .itemSlot.equipped:hover .remove {
+  display: flex;
 }
 
 #t5eah-equipmentTab .itemSlot::after {
